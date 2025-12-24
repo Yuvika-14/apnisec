@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ShieldCheck, Loader2, Lock, Mail, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 export default function LoginPage() {
     const router = useRouter();
@@ -45,56 +44,35 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="min-h-screen w-full flex bg-[#030919] relative overflow-hidden font-sans selection:bg-sky-500/30">
-            {/* Animated Background Elements */}
+        <div className="min-h-screen w-full flex bg-slate-950 relative overflow-hidden font-sans selection:bg-sky-500/30 z-[100]">
+            {/* Animated Background Elements (CSS only) */}
             <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-sky-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '8s' }}></div>
-                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '10s' }}></div>
-                <div className="absolute top-[20%] right-[30%] w-[20%] h-[20%] bg-indigo-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '6s' }}></div>
+                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-sky-600/10 rounded-full blur-[120px] opacity-70"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px] opacity-70"></div>
             </div>
 
             {/* Left Section: Hero/Branding */}
             <div className="hidden lg:flex lg:w-1/2 relative flex-col justify-center items-center p-12 overflow-hidden z-10">
                 <div className="relative z-10 max-w-lg text-center">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8 }}
-                        className="mb-8 relative inline-block"
-                    >
+                    <div className="mb-8 relative inline-block text-white transition-transform hover:scale-105 duration-700">
                         <div className="absolute inset-0 bg-sky-500 blur-[40px] opacity-30 rounded-full"></div>
                         <ShieldCheck className="h-24 w-24 text-sky-400 relative z-10 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)]" />
-                    </motion.div>
+                    </div>
 
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2, duration: 0.8 }}
-                        className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-300 via-blue-200 to-indigo-300 mb-6"
-                    >
+                    <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-300 via-blue-200 to-indigo-300 mb-6">
                         ApniSec
-                    </motion.h1>
+                    </h1>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4, duration: 0.8 }}
-                        className="text-xl text-slate-300 leading-relaxed font-light"
-                    >
+                    <p className="text-xl text-slate-300 leading-relaxed font-light">
                         Advanced security management for the modern web. <br />
                         Monitor, analyze, and secure your assets with confidence.
-                    </motion.p>
+                    </p>
                 </div>
             </div>
 
             {/* Right Section: Form */}
             <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="w-full max-w-md"
-                >
+                <div className="w-full max-w-md animate-in fade-in slide-in-from-bottom-4 duration-700">
                     <div className="glass-panel p-8 sm:p-10 rounded-3xl border border-slate-800/60 bg-slate-900/40 backdrop-blur-xl shadow-2xl shadow-black/50">
                         <div className="text-center mb-10">
                             <div className="lg:hidden flex justify-center mb-4">
@@ -106,14 +84,10 @@ export default function LoginPage() {
 
                         <form className="space-y-6" onSubmit={handleSubmit}>
                             {error && (
-                                <motion.div
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: 'auto' }}
-                                    className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-2"
-                                >
+                                <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-2 animate-pulse">
                                     <div className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0" />
                                     {error}
-                                </motion.div>
+                                </div>
                             )}
 
                             <div className="space-y-5">
@@ -209,7 +183,7 @@ export default function LoginPage() {
                     <div className="mt-6 text-center">
                         <p className="text-xs text-slate-600">© 2024 ApniSec. All rights reserved.</p>
                     </div>
-                </motion.div>
+                </div>
             </div>
         </div>
     );
