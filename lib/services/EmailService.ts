@@ -15,8 +15,9 @@ export class EmailService {
     }
 
     async sendWelcomeEmail(to: string, name: string) {
+        console.log(`Attempting to send welcome email to: ${to}`);
         try {
-            await this.resend.emails.send({
+            const data = await this.resend.emails.send({
                 from: this.fromEmail,
                 to,
                 subject: 'Welcome to ApniSec Dashboard',
@@ -26,8 +27,9 @@ export class EmailService {
           <p>Visit your dashboard to manage security assessments.</p>
         `,
             });
+            console.log('Resend response:', data);
         } catch (error) {
-            console.error('Failed to send welcome email:', error);
+            console.error('CRITICAL: Failed to send welcome email. Full error:', error);
             // Don't block registration if email fails
         }
     }
