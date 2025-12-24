@@ -1,0 +1,12 @@
+# Database Connection
+# Replace with your actual database URL (e.g. from Supabase)
+DATABASE_URL="postgresql://user:password@localhost:5432/apnisec"
+
+# Authentication Secrets
+# You can generate random strings for these
+JWT_SECRET="development-secret-key-change-this-in-production"
+REFRESH_SECRET="development-refresh-secret-change-this"
+
+# Resend API Key for Emails
+# Get this from https://resend.com/api-keys
+RESEND_API_KEY="re_123456789"
