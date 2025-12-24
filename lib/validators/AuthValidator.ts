@@ -16,7 +16,7 @@ export class AuthValidator {
     static validateRegister(data: any) {
         const result = AuthValidator.registerSchema.safeParse(data);
         if (!result.success) {
-            const messages = result.error.errors.map((e) => e.message).join(', ');
+            const messages = result.error.issues.map((e) => e.message).join(', ');
             throw AppError.badRequest(messages);
         }
         return result.data;
@@ -25,7 +25,7 @@ export class AuthValidator {
     static validateLogin(data: any) {
         const result = AuthValidator.loginSchema.safeParse(data);
         if (!result.success) {
-            const messages = result.error.errors.map((e) => e.message).join(', ');
+            const messages = result.error.issues.map((e) => e.message).join(', ');
             throw AppError.badRequest(messages);
         }
         return result.data;

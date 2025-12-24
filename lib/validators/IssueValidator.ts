@@ -7,7 +7,7 @@ export class IssueValidator {
         title: z.string().min(3, 'Title must be at least 3 characters'),
         description: z.string().min(10, 'Description must be at least 10 characters'),
         type: z.nativeEnum(IssueType, {
-            errorMap: () => ({ message: 'Invalid issue type. Must be CLOUD_SECURITY, RETEAM_ASSESSMENT, or VAPT' }),
+            message: 'Invalid issue type. Must be CLOUD_SECURITY, RETEAM_ASSESSMENT, or VAPT',
         }),
         priority: z.enum(['LOW', 'MEDIUM', 'HIGH']).optional(),
         status: z.enum(['OPEN', 'IN_PROGRESS', 'CLOSED']).optional(),
@@ -24,7 +24,7 @@ export class IssueValidator {
     static validateCreate(data: any) {
         const result = IssueValidator.createSchema.safeParse(data);
         if (!result.success) {
-            const messages = result.error.errors.map((e) => e.message).join(', ');
+            const messages = result.error.issues.map((e) => e.message).join(', ');
             throw AppError.badRequest(messages);
         }
         return result.data;
@@ -33,7 +33,7 @@ export class IssueValidator {
     static validateUpdate(data: any) {
         const result = IssueValidator.updateSchema.safeParse(data);
         if (!result.success) {
-            const messages = result.error.errors.map((e) => e.message).join(', ');
+            const messages = result.error.issues.map((e) => e.message).join(', ');
             throw AppError.badRequest(messages);
         }
         return result.data;
