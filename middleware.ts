@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { verify } from 'jsonwebtoken'; // Note: verification in Edge middleware usually needs jose, but let's see if we can use jsonwebtoken or just do it in Node runtime?
 // Next.js Middleware runs on Edge. jsonwebtoken might fail due to Node APIs.
 // Use 'jose' for Edge compatibility or keep auth check in route handlers if middleware fails.
 // However, standard requirement is middleware.
